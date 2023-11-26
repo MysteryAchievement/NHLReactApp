@@ -67,3 +67,61 @@ module.exports = {
    1. Open the index.css file where you imported Tailwind CSS
    2. Press Shift + P and search for “change language mode”
    3. Inside the search bar, type “tailwindcss” and select it.
+
+   ## Rewind-UI
+   Rewind-UI is available as an NPM package and can be installed using the following two commands:
+```
+pnpm add @rewind-ui/core
+```
+and
+```
+pnpm add class-variance-authority tailwind-merge tailwind-scrollbar @tailwindcss/forms @tailwindcss/typography
+```
+After having installed Tailwind CSS, you must configure it to work with Rewind-UI. To do this, you must first create a tailwind.config.js file in the root directory of your project. Then, add the following code to that config file:
+```
+module.exports = {
+  content: [
+    './src/**/*.{html,jsx,tsx}',
+    // you can either add all styles
+    './node_modules/@rewind-ui/core/dist/theme/styles/*.js',
+    // OR you can add only the styles you need
+    './node_modules/@rewind-ui/core/dist/theme/styles/Button.styles.js',
+    './node_modules/@rewind-ui/core/dist/theme/styles/Text.styles.js'
+  ],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('tailwind-scrollbar')({ nocompatible: true }),
+    require('@tailwindcss/forms')({
+      strategy: 'class' // only generate classes
+    })
+  ]
+};
+```
+or in ES6 style:
+```
+import tailwindTypography from '@tailwindcss/typography'
+import tailwindForm from '@tailwindcss/forms'
+import tailwindScrollbar from 'tailwind-scrollbar'
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    './src/**/*.{html,ts,tsx}',
+    // you can either add all styles
+    './node_modules/@rewind-ui/core/dist/theme/styles/*.js',
+    // TODO: add only the styles you need
+    // './node_modules/@rewind-ui/core/dist/theme/styles/Button.styles.js',
+    // './node_modules/@rewind-ui/core/dist/theme/styles/Text.styles.js',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    tailwindTypography,
+    tailwindScrollbar({ nocompatible: true }),
+    tailwindForm({
+      strategy: 'class' // only generate classes
+    })
+  ],
+};
+```

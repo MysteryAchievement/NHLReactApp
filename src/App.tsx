@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button } from '@rewind-ui/core';
 import './App.css';
 
 function App() {
@@ -8,9 +9,9 @@ function App() {
     <>
       <h1>Vite & React</h1>
       <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>
+        <Button color="blue" size="sm" className="font-semibold" onClick={() => setCount((count) => count + 1)}>
           count is {count}
-        </button>
+        </Button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
