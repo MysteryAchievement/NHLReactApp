@@ -30,7 +30,7 @@ If you are developing a production application, we recommend updating the config
 
 - Install tailwindcss via pnpm: 
 ```
-pnpm add - D tailwindcss
+pnpm add - D tailwindcss postcss autoprefixer
 ```
 - Create your tailwind.config.js file: 
 ```
@@ -53,9 +53,14 @@ module.exports = {
 @tailwind components;
 @tailwind utilities;
 ```
-- Run the CLI tool to scan your template files for classes and build your CSS:  
+- Add tailwindcss and autoprefixer to your postcss.config.js file:  
 ```
-npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  }
+}
 ```
 - Install the Tailwind CSS plugin: https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
 - Configure `index.css` to use Tailwind CSS:
